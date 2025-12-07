@@ -1,0 +1,10 @@
+# ignore the bin folder and all its contents
+bin/
+# ignore every pdf file
+*.pdf
+# ignore DS_Store files
+.DS_Store
+# rule exception (beginning with a !): pdf files name 'myImportantFile.pdf' sho$
+!myImportantFile.pdf
+# ignore .gradlew files
+**/.gradle/
