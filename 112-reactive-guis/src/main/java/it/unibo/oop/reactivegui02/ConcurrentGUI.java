@@ -57,16 +57,9 @@ public final class ConcurrentGUI extends JFrame {
      * invisible outside and encapsulated.
      */
     private final class Agent implements Runnable {
-        /*
-         * Stop is volatile to ensure visibility. Look at:
-         *
-         * http://archive.is/9PU5N - Sections 17.3 and 17.4
-         *
-         * For more details on how to use volatile:
-         *
-         * http://archive.is/4lsKW
-         *
-         */
+
+        @Serial
+        private static final long serialVersionUID = 1L;
         private volatile boolean stop;
         private volatile boolean up = true;
         private int counter;

@@ -56,7 +56,6 @@ public final class ConcurrentGUI extends JFrame {
     private final class Agent implements Runnable {
         /*
          * Stop is volatile to ensure visibility. Look at:
-         *
          * http://archive.is/9PU5N - Sections 17.3 and 17.4
          *
          * For more details on how to use volatile:
@@ -76,7 +75,7 @@ public final class ConcurrentGUI extends JFrame {
                     SwingUtilities.invokeAndWait(() -> ConcurrentGUI.this.display.setText(nextText));
                     this.counter++;
                     Thread.sleep(100);
-                } catch (InvocationTargetException | InterruptedException ex) {
+                } catch (final InvocationTargetException | InterruptedException ex) {
                     LOGGER.error(ex.getMessage(), ex);
                 }
             }
