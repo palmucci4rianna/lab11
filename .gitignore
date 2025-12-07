@@ -8,3 +8,7 @@ bin/
 !myImportantFile.pdf
 # ignore .gradlew files
 **/.gradle/
+gradle/
+.gradle/
+gradlew
+gradlew.bat
