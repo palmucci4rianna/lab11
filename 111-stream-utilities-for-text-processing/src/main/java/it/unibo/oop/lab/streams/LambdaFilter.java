@@ -9,6 +9,9 @@ import java.awt.Toolkit;
 import java.io.Serial;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.Arrays;
+//import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -41,7 +44,22 @@ public final class LambdaFilter extends JFrame {
         /**
          * Commands.
          */
-        IDENTITY("No modifications", Function.identity());
+        IDENTITY("No modifications", Function.identity()),
+        TO_LOWER("Convert to lowercase", String::toLowerCase),
+        COUNT("Count characters", s -> Integer.toString(s.length())),
+        LINES("Count lines", s -> Long.toString(s.lines().count())),
+        WORDS("List words alphabetically", s -> 
+            Arrays.stream(s.split("\\s"))
+            .sorted()
+            .collect(Collectors.joining("\n"))
+        ),
+        WORD_COUNT("Count occurrences of each word", s -> 
+            Arrays.stream(s.split("\\s"))
+            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+            .entrySet().stream()
+            .map(e -> e.getKey() + " -> " + e.getValue())
+            .collect(Collectors.joining("\n"))
+        );
 
         private final String commandName;
         private final Function<String, String> fun;
